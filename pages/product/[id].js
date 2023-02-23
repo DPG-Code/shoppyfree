@@ -1,25 +1,38 @@
-import Layout from "@/components/Layout"
-import connectMongoose from "@/lib/mongoose"
-import { useRouter } from "next/router"
+import Layout from '@/components/Layout'
+import connectMongoose from '@/lib/mongoose'
+import { getProduct } from '../api/product'
 
-export default function Product() {
-  const router = useRouter()
-  const {id} = router.query
+export default function Product({ id, product }) {
+  const { name, description, price, category, sex, picture, imgs } = product
+
   return (
     <Layout>
       <main>
-        <p>details: {id}</p>
+        {
+          <div>
+            {name}
+            {description}
+            {price}
+            {category}
+            {sex}
+            {picture}
+          </div>
+        }
       </main>
     </Layout>
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const { id = '' } = context.query
   await connectMongoose()
+
+  const product = await getProduct(id)
 
   return {
     props: {
-      products: JSON.parse(JSON.stringify(products))
+      id,
+      product: JSON.parse(JSON.stringify(product))
     }
   }
 }

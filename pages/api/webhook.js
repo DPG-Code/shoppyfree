@@ -17,8 +17,6 @@ export default async function handler(req, res) {
     signingSecret
   )
 
-  console.log(event)
-
   if (event?.type === 'checkout.session.completed') {
     const metadata = event.data?.object?.metadata
     const paymentStatus = event.data?.object?.payment_status

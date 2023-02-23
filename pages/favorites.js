@@ -1,18 +1,12 @@
 import Layout from '@/components/Layout'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { ProductsContext } from '@/context/ProductsContext'
+import useFavorites from '@/hooks/useFavorites'
 
 export default function Home() {
   const { favoritesProducts, setFavoritesProducts } =
     useContext(ProductsContext)
-  const [favorites, setFavorites] = useState([])
-
-  useEffect(() => {
-    const uniqIds = [...new Set(favoritesProducts)]
-    fetch(`/api/products?favs=${uniqIds.join(',')}`)
-      .then((res) => res.json())
-      .then((data) => setFavorites(data))
-  }, [favoritesProducts])
+  const { favorites } = useFavorites(favoritesProducts)
 
   const addRemoveFavorites = (id) => {
     if (favoritesProducts.includes(id)) {
