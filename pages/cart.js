@@ -34,7 +34,7 @@ export default function Cart() {
   let delivery = 4.5
   if (selectedProducts.length > 0) {
     for (let id of selectedProducts) {
-      const price = cartProducts.find((p) => p._id === id)?.price || 0
+      const price = cartProducts.find((p) => p._id === id)?.price
       subtotal += Number(price)
     }
   }

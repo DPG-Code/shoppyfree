@@ -1,4 +1,5 @@
 import { ProductsContext } from '@/context/ProductsContext'
+import Link from 'next/link'
 import { useContext } from 'react'
 
 export default function Product({
@@ -9,19 +10,27 @@ export default function Product({
   picture,
   category
 }) {
-  const { selectedProducts, setSelectedProducts } = useContext(ProductsContext)
-  const addProduct = () => {
+  const { setSelectedProducts, setFavoritesProducts } = useContext(ProductsContext)
+
+  const addProductToCart = () => {
     setSelectedProducts((prev) => [...prev, _id])
+  }
+
+  const addProductToFavorites = () => {
+    setFavoritesProducts((prev) => [...prev, _id])
   }
 
   return (
     <>
-      <img src={picture} alt={name} />
-      <p>{name}</p>
-      <p>{description}</p>
-      <p>{price}</p>
-      <p>{category}</p>
-      <button onClick={addProduct}>add</button>
+      <Link href={`/product/${_id}`}>
+        <img src={picture} alt={name} />
+        <p>{name}</p>
+        <p>{description}</p>
+        <p>{price}</p>
+        <p>{category}</p>
+      </Link>
+      <button onClick={addProductToFavorites}>favorite</button>
+      <button onClick={addProductToCart}>cart</button>
     </>
   )
 }

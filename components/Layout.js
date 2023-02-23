@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { ProductsContext } from '@/context/ProductsContext'
 import Header from './Header'
+import Footer from './Footer'
 
 export default function Layout({ children }) {
   const { setSelectedProducts } = useContext(ProductsContext)
@@ -17,6 +18,7 @@ export default function Layout({ children }) {
       <Header />
       {success && <div>Compra hecha</div>}
       {children}
+      <Footer />
     </div>
   )
 }
