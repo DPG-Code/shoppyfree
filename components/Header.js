@@ -10,7 +10,8 @@ export default function Header() {
   return (
     <header>
       <Link href='/'>Home</Link>
-      <Link href='/'>Man / Woman</Link>
+      <Link href='/products/man'>Man</Link>
+      <Link href='/products/woman'>Woman</Link>
       <Link href='/favorites'>Favorites</Link>
       <Link href='/cart'>Cart {selectedProducts.length}</Link>
     </header>

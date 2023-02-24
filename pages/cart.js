@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout'
 import { ProductsContext } from '@/context/ProductsContext'
 import useCart from '@/hooks/useCart'
+import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
 
 export default function Cart() {
@@ -44,7 +45,8 @@ export default function Cart() {
           ).length
           if (amount === 0) return
           return (
-            <div key={productInfo._id}>
+            <Link href={`/product/${productInfo._id}`} key={productInfo._id}>
+              <img src={productInfo.picture} alt={productInfo.name} />
               <h2>{productInfo.name}</h2>{' '}
               <div>
                 <button onClick={() => removeMoreThisProduct(productInfo._id)}>
@@ -55,7 +57,7 @@ export default function Cart() {
                   +
                 </button>
               </div>
-            </div>
+            </Link>
           )
         })}
       <form action='/api/checkout' method='POST'>

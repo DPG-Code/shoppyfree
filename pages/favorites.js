@@ -2,6 +2,7 @@ import Layout from '@/components/Layout'
 import { useContext } from 'react'
 import { ProductsContext } from '@/context/ProductsContext'
 import useFavorites from '@/hooks/useFavorites'
+import Link from 'next/link'
 
 export default function Home() {
   const { favoritesProducts, setFavoritesProducts } =
@@ -26,12 +27,13 @@ export default function Home() {
         <h1>Favorites</h1>
         {favoritesProducts.length ? (
           favorites.map((product) => (
-            <div key={product._id}>
-              {product.name}
+            <Link href={`/product/${product._id}`} key={product._id}>
+              <img src={product.picture} alt={product.name} />
+              <p>{product.name}</p>
               <button onClick={() => addRemoveFavorites(product._id)}>
                 {favorites.includes(product._id) ? 'remove' : 'added'}
               </button>
-            </div>
+            </Link>
           ))
         ) : (
           <p>No favorites products</p>
