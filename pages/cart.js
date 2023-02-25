@@ -45,9 +45,15 @@ export default function Cart() {
           ).length
           if (amount === 0) return
           return (
-            <Link href={`/product/${productInfo._id}`} key={productInfo._id}>
-              <img src={productInfo.picture} alt={productInfo.name} />
-              <h2>{productInfo.name}</h2>{' '}
+            <div>
+              <Link href={`/product/${productInfo._id}`} key={productInfo._id}>
+                <img
+                  className='w-16'
+                  src={productInfo.picture}
+                  alt={productInfo.name}
+                />
+                <h2>{productInfo.name}</h2>{' '}
+              </Link>
               <div>
                 <button onClick={() => removeMoreThisProduct(productInfo._id)}>
                   -
@@ -57,7 +63,7 @@ export default function Cart() {
                   +
                 </button>
               </div>
-            </Link>
+            </div>
           )
         })}
       <form action='/api/checkout' method='POST'>

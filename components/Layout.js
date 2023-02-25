@@ -14,7 +14,7 @@ export default function Layout({ children }) {
     }
   }, [])
   return (
-    <div>
+    <div className='relative flex flex-col'>
       <Header />
       {success && <div>Compra hecha</div>}
       {children}
