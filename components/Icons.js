@@ -33,7 +33,7 @@ export const IconAddToCart = ({ width = '24px', height = '24px' }) => {
     >
       <path
         d='M19.26 9.696l1.385 9A2 2 0 0118.67 21H5.33a2 2 0 01-1.977-2.304l1.385-9A2 2 0 016.716 8h10.568a2 2 0 011.977 1.696zM14 5a2 2 0 10-4 0M8.992 15h3m3 0h-3m0 0v-3m0 3v3'
-        stroke='#000000'
+        stroke='#ffffff'
         strokeWidth='1.5'
         strokeLinecap='round'
         strokeLinejoin='round'
@@ -121,7 +121,7 @@ export const IconPayment = () => {
     >
       <path
         d='M22 9v8a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2h16a2 2 0 012 2v2zm0 0H6M16.5 13.382a1.5 1.5 0 110 2.236M16.5 13.382a1.5 1.5 0 100 2.236'
-        stroke='#000000'
+        stroke='#ffffff'
         strokeWidth='1.5'
         strokeLinecap='round'
         strokeLinejoin='round'

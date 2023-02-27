@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { IconAddToCart, IconHeart } from './Icons'
 
 export default function Product({ _id, name, price, picture }) {
-  const { setSelectedProducts, setFavoritesProducts } =
+  const { setSelectedProducts, favoritesProducts, setFavoritesProducts } =
     useContext(ProductsContext)
 
   const addProductToCart = () => {
@@ -12,7 +12,14 @@ export default function Product({ _id, name, price, picture }) {
   }
 
   const addProductToFavorites = () => {
-    setFavoritesProducts((prev) => [...prev, _id])
+    if (favoritesProducts.includes(_id)) {
+      const positionId = favoritesProducts.indexOf(_id)
+      if (positionId !== -1) {
+        setFavoritesProducts((prev) => {
+          return prev.filter((product, i) => i !== positionId)
+        })
+      }
+    } else setFavoritesProducts((prev) => [...prev, _id])
   }
 
   return (
@@ -23,20 +30,21 @@ export default function Product({ _id, name, price, picture }) {
           src={picture}
           alt={name}
         />
-        <p className='font-light text-xs overflow-hidden text-ellipsis whitespace-nowrap'>
+        <p className='font-normal text-xs overflow-hidden text-ellipsis whitespace-nowrap'>
           {name}
         </p>
-        <p className='font-medium'>$ {price}</p>
+        <p className='font-semibold'>$ {price}</p>
       </Link>
       <footer className='flex'>
-        <button className='mr-auto' onClick={addProductToFavorites}>
-          <IconHeart active='active' width='18px' height='18px' />
-        </button>
         <button
-          className='px-2 py-1 border-[1px] border-gray-400 text-xs font-medium flex items-center justify-center gap-2'
+          className='mr-auto px-5 py-1.5 bg-emerald-500 flex items-center justify-center gap-2'
           onClick={addProductToCart}
         >
-          Add to cart <IconAddToCart width='18px' height='18px' />
+          <span className='text-white text-xs font-medium'>ADD TO</span>
+          <IconAddToCart width='16px' height='16px' />
+        </button>
+        <button onClick={addProductToFavorites}>
+          <IconHeart active='active' width='20px' height='20px' />
         </button>
       </footer>
     </>

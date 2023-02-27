@@ -43,7 +43,7 @@ export default function Header() {
             <span
               className={`w-5 h-5 flex items-center justify-center ${
                 selectedProducts.length === 0 ? 'bg-gray-400' : 'bg-red-500'
-              } rounded-full text-[8px] text-white absolute -top-1.5 -right-3`}
+              } border-2 border-white rounded-full text-[8px] text-white absolute -top-1.5 -right-3`}
             >
               {selectedProducts.length < 10 ? selectedProducts.length : '9+'}
             </span>

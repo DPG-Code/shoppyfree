@@ -2,7 +2,7 @@ import Layout from '@/components/Layout'
 import { useContext } from 'react'
 import { ProductsContext } from '@/context/ProductsContext'
 import useFavorites from '@/hooks/useFavorites'
-import Link from 'next/link'
+import Product from '@/components/Product'
 
 export default function Home() {
   const { favoritesProducts, setFavoritesProducts } =
@@ -23,21 +23,19 @@ export default function Home() {
 
   return (
     <Layout>
-      <main>
-        <h1>Favorites</h1>
-        {favoritesProducts.length ? (
-          favorites.map((product) => (
-            <Link href={`/product/${product._id}`} key={product._id}>
-              <img src={product.picture} alt={product.name} />
-              <p>{product.name}</p>
-              <button onClick={() => addRemoveFavorites(product._id)}>
-                {favorites.includes(product._id) ? 'remove' : 'added'}
-              </button>
-            </Link>
-          ))
-        ) : (
-          <p>No favorites products</p>
-        )}
+      <main className='px-16 pt-16 w-full h-auto flex flex-col items-center justify-start gap-6'>
+        <h2 className='w-full text-left font-medium text-2xl'>Favorites</h2>
+        <section className='w-full flex gap-4'>
+          {favoritesProducts.length ? (
+            favorites.map((product) => (
+              <div className='w-40 flex flex-col gap-4' key={product._id}>
+                <Product {...product} />
+              </div>
+            ))
+          ) : (
+            <p>No favorites products</p>
+          )}
+        </section>
       </main>
     </Layout>
   )

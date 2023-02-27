@@ -1,23 +1,13 @@
 import Layout from '@/components/Layout'
+import ProductDetail from '@/components/ProductDetail'
 import connectMongoose from '@/lib/mongoose'
 import { getProduct } from '../api/product'
 
 export default function Product({ id, product }) {
-  const { name, description, price, category, sex, picture, imgs } = product
-
   return (
     <Layout>
-      <main>
-        {
-          <div>
-            {name}
-            {description}
-            {price}
-            {category}
-            {sex}
-            {picture}
-          </div>
-        }
+      <main className='px-16 pt-16 w-full h-auto flex'>
+        <ProductDetail id={id} {...product} />
       </main>
     </Layout>
   )
@@ -26,7 +16,6 @@ export default function Product({ id, product }) {
 export async function getServerSideProps(context) {
   const { id = '' } = context.query
   await connectMongoose()
-
   const product = await getProduct(id)
 
   return {

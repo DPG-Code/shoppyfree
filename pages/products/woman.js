@@ -44,7 +44,7 @@ export default function Woman({ products }) {
           />
           <IconSearch className='absolute right-0' />
         </div>
-        <h2 className='w-full text-left font-normal text-xl'>{titlePage}</h2>
+        <h2 className='w-full text-left font-medium text-2xl'>{titlePage}</h2>
         <div className='w-full flex gap-2'>
           {categories.map((category) => (
             <button
