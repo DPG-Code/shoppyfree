@@ -24,28 +24,30 @@ export default function ProductDetail({
   }
   return (
     <>
-      <article className='basis-3/6'>
-        <img src={picture} alt={name} />
+      <article className='w-full flex items-center justify-center'>
+        <img className='h-72' src={picture} alt={name} />
       </article>
-      <aside className='basis-3/6 flex flex-col gap-2'>
-        <h2>{name}</h2>
-        <p>{description}</p>
-        <h3>{price}</h3>
-        <section className='flex gap-2'>
-          <span className='px-2 py-1 border-[1px] border-gray-400'>{sex}</span>
-          <span className='px-2 py-1 border-[1px] border-gray-400'>
-            {category}
-          </span>
+      <aside className='w-full h-auto flex flex-col items-start justify-start gap-3'>
+        <h2 className='font-semibold text-xl'>{name.toUpperCase()}</h2>
+        <p className='text-gray-500 font-normal'>{description}</p>
+        <h3 className='font-bold text-3xl'>$ {price}</h3>
+        <section className='flex gap-4'>
+          <p className='text-gray-500'>
+            Genre: <span className='text-black font-medium'>{sex}</span>
+          </p>
+          <p className='text-gray-500'>
+            Category: <span className='text-black font-medium'>{category}</span>
+          </p>
         </section>
-        <section className='flex gap-2'>
-          <button className='mr-auto' onClick={addProductToFavorites}>
-            <IconHeart active='active' width='18px' height='18px' />
-          </button>
+        <section className='w-auto flex gap-4'>
           <button
-            className='px-2 py-1 border-[1px] border-gray-400 text-xs font-medium flex items-center justify-center gap-2'
+            className='px-6 py-2 bg-black flex items-center justify-center gap-2'
             onClick={addProductToCart}
           >
-            Add to cart <IconAddToCart width='18px' height='18px' />
+            <span className='text-white text-xs font-medium'>ADD TO CART</span>
+          </button>
+          <button className='mr-auto' onClick={addProductToFavorites}>
+            <IconHeart active='active' width='18px' height='18px' />
           </button>
         </section>
       </aside>

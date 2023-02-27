@@ -1,9 +1,9 @@
-import { IconPayment } from '@/components/Icons'
+import { IconPayment, IconX } from '@/components/Icons'
 import Layout from '@/components/Layout'
 import { ProductsContext } from '@/context/ProductsContext'
 import useCart from '@/hooks/useCart'
 import Link from 'next/link'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 
 export default function Cart() {
   const { selectedProducts, setSelectedProducts } = useContext(ProductsContext)
@@ -25,6 +25,9 @@ export default function Cart() {
       })
     }
   }
+  const cleanCart = () => {
+    setSelectedProducts((prev) => [])
+  }
 
   let subtotal = 0
   let delivery = 0
@@ -38,11 +41,16 @@ export default function Cart() {
 
   return (
     <Layout>
-      <main className='px-16 pt-16 w-full h-auto flex flex-col items-start justify-start gap-12'>
-        <h2 className='w-full text-left font-medium text-2xl'>
-          Cart{' '}
-          {selectedProducts.length > 0 ? `(${selectedProducts.length})` : ''}
-        </h2>
+      <main className='px-10 py-16 w-full h-auto flex flex-col items-start justify-start gap-12'>
+        <header className='w-full flex items-center justify-between'>
+          <h2 className='text-left font-medium text-2xl'>
+            CART{' '}
+            {selectedProducts.length > 0 ? `(${selectedProducts.length})` : ''}
+          </h2>
+          <button onClick={cleanCart}>
+            <IconX />
+          </button>
+        </header>
         {!selectedProducts.length && <p>No products in your shopping cart</p>}
         <section className='flex flex-col gap-6'>
           {cartProducts.length &&
@@ -52,7 +60,7 @@ export default function Cart() {
               ).length
               if (amount === 0) return
               return (
-                <div className='w-96 flex gap-6' key={product._id}>
+                <div className='w-72 flex gap-6' key={product._id}>
                   <article className='flex items-center justify-center'>
                     <Link href={`/product/${product._id}`} key={product._id}>
                       <img
@@ -81,7 +89,7 @@ export default function Cart() {
                         }
                       </span>
                       <button
-                        className='px-2 bg-emerald-500'
+                        className='px-2 bg-black'
                         onClick={() => addMoreThisProduct(product._id)}
                       >
                         <span className='font-semibold text-white'>+</span>
@@ -148,7 +156,7 @@ export default function Cart() {
           />
           <button
             className={`mt-6 mx-auto px-32 py-2 ${
-              selectedProducts.length > 0 ? 'bg-emerald-500' : 'bg-gray-300'
+              selectedProducts.length > 0 ? 'bg-black' : 'bg-gray-300'
             } flex items-center justify-center gap-2`}
             type='submit'
             disabled={selectedProducts.length > 0 ? false : true}

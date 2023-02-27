@@ -1,7 +1,7 @@
 import { ProductsContext } from '@/context/ProductsContext'
 import Link from 'next/link'
 import { useContext } from 'react'
-import { IconAddToCart, IconHeart } from './Icons'
+import { IconHeart } from './Icons'
 
 export default function Product({ _id, name, price, picture }) {
   const { setSelectedProducts, favoritesProducts, setFavoritesProducts } =
@@ -37,11 +37,10 @@ export default function Product({ _id, name, price, picture }) {
       </Link>
       <footer className='flex'>
         <button
-          className='mr-auto px-5 py-1.5 bg-emerald-500 flex items-center justify-center gap-2'
+          className='mr-auto px-5 py-1.5 bg-black flex items-center justify-center gap-2'
           onClick={addProductToCart}
         >
-          <span className='text-white text-xs font-medium'>ADD TO</span>
-          <IconAddToCart width='16px' height='16px' />
+          <span className='text-white text-xs font-normal'>ADD TO CART</span>
         </button>
         <button onClick={addProductToFavorites}>
           <IconHeart active='active' width='20px' height='20px' />

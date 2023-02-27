@@ -5,8 +5,8 @@ import { getProduct } from '../api/product'
 
 export default function Product({ id, product }) {
   return (
-    <Layout>
-      <main className='px-16 pt-16 w-full h-auto flex'>
+    <Layout title={product.name}>
+      <main className='px-10 pt-16 w-full h-auto flex flex-col gap-6'>
         <ProductDetail id={id} {...product} />
       </main>
     </Layout>

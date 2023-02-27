@@ -11,16 +11,16 @@ export default function Header() {
   const { pathname } = router
 
   return (
-    <header className='w-full sticky top-0'>
-      <nav className='px-16 w-full h-16 flex items-center justify-between'>
-        <Link className='font-normal' href='/'>
-          ShopyFree
+    <header className='z-50 w-full sticky top-0'>
+      <nav className='px-10 w-full h-16 bg-white flex items-center justify-between'>
+        <Link href='/'>
+          <img className='w-14' src='/logo.png' alt='logo-home' />
         </Link>
-        <div className='flex gap-4'>
+        <div className='flex gap-2'>
           <Link
             className={`font-${
               pathname == '/products/man' ? 'medium' : 'light'
-            }`}
+            } text-xs`}
             href='/products/man'
           >
             MAN
@@ -28,7 +28,7 @@ export default function Header() {
           <Link
             className={`font-${
               pathname == '/products/woman' ? 'medium' : 'light'
-            }`}
+            } text-xs`}
             href='/products/woman'
           >
             WOMAN

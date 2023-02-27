@@ -32,8 +32,8 @@ export default function Woman({ products }) {
     )
 
   return (
-    <Layout>
-      <main className='px-16 pt-16 w-full h-auto flex flex-col items-center justify-start gap-6'>
+    <Layout title='Woman products'>
+      <main className='px-10 py-16 w-full h-auto flex flex-col items-center justify-start gap-8'>
         <div className='w-64 flex items-center relative'>
           <input
             className='py-1 w-full border-b-[1px] border-black outline-0'
@@ -44,7 +44,9 @@ export default function Woman({ products }) {
           />
           <IconSearch className='absolute right-0' />
         </div>
-        <h2 className='w-full text-left font-medium text-2xl'>{titlePage}</h2>
+        <h2 className='w-full text-left font-medium text-2xl'>
+          {titlePage.toUpperCase()}
+        </h2>
         <div className='w-full flex gap-2'>
           {categories.map((category) => (
             <button
@@ -60,7 +62,7 @@ export default function Woman({ products }) {
             </button>
           ))}
         </div>
-        <section className='w-full flex gap-4'>
+        <section className='w-full flex flex-wrap gap-x-4 gap-y-8'>
           {productsByCategory.length > 0
             ? productsByCategory.map((product) => (
                 <div className='w-40 flex flex-col gap-4' key={product._id}>
