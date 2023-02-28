@@ -42,9 +42,9 @@ export default function Cart() {
 
   return (
     <Layout>
-      <main className='px-10 py-16 w-full h-auto flex flex-col items-start justify-start gap-12'>
+      <main className='px-10 py-16 w-full h-auto flex flex-col items-start justify-start gap-12   lg:px-32 lg:py-20 lg:gap-16'>
         <header className='w-full flex items-center justify-between'>
-          <h2 className='text-left font-medium text-2xl'>
+          <h2 className='text-left font-medium text-2xl   lg:text-3xl'>
             CART{' '}
             {selectedProducts.length > 0 ? `(${selectedProducts.length})` : ''}
           </h2>
@@ -66,29 +66,34 @@ export default function Cart() {
               ).length
               if (amount === 0) return
               return (
-                <div className='w-72 flex gap-6' key={product._id}>
+                <div
+                  className='w-72 flex items-center justify-start gap-6   lg:w-[500px] lg:gap-12'
+                  key={product._id}
+                >
                   <article className='flex items-center justify-center'>
                     <Link href={`/product/${product._id}`} key={product._id}>
                       <img
-                        className='h-20 object-cover'
+                        className='h-20 object-cover   lg:h-44'
                         src={product.picture}
                         alt={product.name}
                       />
                     </Link>
                   </article>
-                  <aside className='w-full flex flex-col gap-1'>
-                    <p className='text-sm font-normal overflow-hidden text-ellipsis whitespace-nowrap'>
+                  <aside className='w-full flex flex-col gap-1   lg:gap-3'>
+                    <p className='text-sm font-normal overflow-hidden text-ellipsis whitespace-nowrap   lg:text-2xl'>
                       {product.name}
                     </p>
-                    <h2 className='text-lg font-medium'>$ {product.price}</h2>
-                    <div className='flex items-center justify-start gap-3'>
+                    <h2 className='text-lg font-medium   lg:text-3xl'>
+                      $ {product.price}
+                    </h2>
+                    <div className='flex items-center justify-start gap-3   lg:gap-4'>
                       <button
                         className='px-2 bg-gray-200'
                         onClick={() => removeMoreThisProduct(product._id)}
                       >
-                        <span className='font-semibold'>-</span>
+                        <span className='font-semibold   lg:text-lg'>-</span>
                       </button>
-                      <span className='text-lg font-semibold'>
+                      <span className='text-lg font-semibold   lg:text-xl'>
                         {
                           selectedProducts.filter((id) => id === product._id)
                             .length
@@ -98,7 +103,9 @@ export default function Cart() {
                         className='px-2 bg-black'
                         onClick={() => addMoreThisProduct(product._id)}
                       >
-                        <span className='font-semibold text-white'>+</span>
+                        <span className='font-semibold text-white   lg:text-lg'>
+                          +
+                        </span>
                       </button>
                     </div>
                   </aside>
@@ -109,10 +116,10 @@ export default function Cart() {
         <form
           action='/api/checkout'
           method='POST'
-          className='w-full flex flex-col gap-2'
+          className='w-full flex flex-col gap-2   lg:gap-6'
         >
           <input
-            className='py-1 w-full border-b-[1px] border-gray-400 outline-0'
+            className='py-1 w-full border-b-[1px] border-black outline-0   lg:py-2 lg:text-3xl'
             name='adress'
             value={adress}
             onChange={(e) => setAdress(e.target.value)}
@@ -121,7 +128,7 @@ export default function Cart() {
             required
           />
           <input
-            className='py-1 w-full border-b-[1px] border-gray-400 outline-0'
+            className='py-1 w-full border-b-[1px] border-black outline-0   lg:py-2 lg:text-3xl'
             name='city'
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -130,7 +137,7 @@ export default function Cart() {
             required
           />
           <input
-            className='py-1 w-full border-b-[1px] border-gray-400 outline-0'
+            className='py-1 w-full border-b-[1px] border-black outline-0   lg:py-2 lg:text-3xl'
             name='name'
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -139,7 +146,7 @@ export default function Cart() {
             required
           />
           <input
-            className='py-1 w-full border-b-[1px] border-gray-400 outline-0'
+            className='py-1 w-full border-b-[1px] border-black outline-0   lg:py-2 lg:text-3xl'
             name='email'
             value={email}
             onChange={(e) => setemail(e.target.value)}
@@ -147,15 +154,15 @@ export default function Cart() {
             placeholder='Email'
             required
           />
-          <p className='mt-6 font-semibold'>
+          <p className='mt-6 font-semibold   lg:text-3xl'>
             <span className='text-gray-400 font-medium'>Subtotal: </span>${' '}
             {Number.parseFloat(subtotal).toFixed(2)}
           </p>
-          <p className='font-semibold'>
+          <p className='font-semibold   lg:text-3xl'>
             <span className='text-gray-400 font-medium'>Delivery: </span>
             {delivery > 0 ? `$${delivery}` : 'FREE'}
           </p>
-          <p className='font-semibold'>
+          <p className='font-semibold   lg:text-3xl'>
             <span className='text-gray-400 font-medium'>Total: </span>${' '}
             {Number.parseFloat(total).toFixed(2)}
           </p>
@@ -167,11 +174,11 @@ export default function Cart() {
           <button
             className={`mt-6 mx-auto px-32 py-2 ${
               selectedProducts.length > 0 ? 'bg-black' : 'bg-gray-300'
-            } flex items-center justify-center gap-2`}
+            } flex items-center justify-center gap-2    lg:px-56 lg:py-4 lg:gap-4`}
             type='submit'
             disabled={selectedProducts.length > 0 ? false : true}
           >
-            <span className='text-white font-semibold'>PAY</span>
+            <span className='text-white font-semibold   lg:text-2xl'>PAY</span>
             <IconPayment />
           </button>
         </form>

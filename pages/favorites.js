@@ -24,12 +24,17 @@ export default function Home() {
 
   return (
     <Layout>
-      <main className='px-10 py-16 w-full h-auto flex flex-col items-center justify-start gap-6'>
-        <h2 className='w-full text-left font-medium text-2xl'>FAVORITES</h2>
-        <section className='w-full flex flex-wrap gap-x-4 gap-y-8'>
+      <main className='px-10 py-16 w-full h-auto flex flex-col items-center justify-start gap-6   lg:px-32 lg:py-20 lg:gap-12'>
+        <h2 className='w-full text-left font-medium text-2xl   lg:text-3xl'>
+          FAVORITES
+        </h2>
+        <section className='w-full grid grid-cols-products gap-10   lg:gap-12'>
           {favoritesProducts.length ? (
             favorites.map((product) => (
-              <div className='w-40 flex flex-col gap-4' key={product._id}>
+              <div
+                className='w-full flex flex-col gap-2   lg:gap-4'
+                key={product._id}
+              >
                 <Product {...product} />
               </div>
             ))

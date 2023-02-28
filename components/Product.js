@@ -26,14 +26,14 @@ export default function Product({ _id, name, price, picture }) {
     <>
       <Link className='w-full flex flex-col' href={`/product/${_id}`}>
         <img
-          className='mb-4 h-36 w-full object-cover'
+          className='mb-4 h-52 w-full object-cover   lg:h-72'
           src={picture}
           alt={name}
         />
-        <p className='font-normal text-xs overflow-hidden text-ellipsis whitespace-nowrap'>
+        <p className='font-normal text-sm overflow-hidden text-ellipsis whitespace-nowrap   lg:text-lg'>
           {name}
         </p>
-        <p className='font-semibold'>$ {price}</p>
+        <p className='font-semibold text-xl   lg:text-xl'>$ {price}</p>
       </Link>
       <footer className='flex'>
         <button

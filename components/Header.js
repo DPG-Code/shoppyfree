@@ -12,15 +12,15 @@ export default function Header() {
 
   return (
     <header className='z-50 w-full sticky top-0'>
-      <nav className='px-10 w-full h-16 bg-white flex items-center justify-between'>
+      <nav className='px-10 w-full h-16 bg-white flex items-center justify-between   lg:px-32 lg:h-24'>
         <Link href='/'>
-          <img className='w-14' src='/logo.png' alt='logo-home' />
+          <img className='w-14   lg:w-24' src='/logo.png' alt='logo-home' />
         </Link>
-        <div className='flex gap-2'>
+        <div className='flex gap-2   lg:gap-6'>
           <Link
             className={`font-${
               pathname == '/products/man' ? 'medium' : 'light'
-            } text-xs`}
+            } text-xs   lg:text-xl`}
             href='/products/man'
           >
             MAN
@@ -28,7 +28,7 @@ export default function Header() {
           <Link
             className={`font-${
               pathname == '/products/woman' ? 'medium' : 'light'
-            } text-xs`}
+            } text-xs   lg:text-xl`}
             href='/products/woman'
           >
             WOMAN

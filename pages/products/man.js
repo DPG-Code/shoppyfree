@@ -16,7 +16,7 @@ export default function Man({ products }) {
 
   const filterCategories = (category) => {
     if (category === 'all products') {
-      setProductsByCategory(products)
+      setProductsByCategory([])
       setTitlePage('all products')
     } else {
       setProductsByCategory(
@@ -33,10 +33,10 @@ export default function Man({ products }) {
 
   return (
     <Layout title='Man products'>
-      <main className='px-10 py-16 w-full h-auto flex flex-col items-center justify-start gap-8'>
-        <div className='w-64 flex items-center relative'>
+      <main className='px-10 py-16 w-full h-auto flex flex-col items-center justify-start gap-8   lg:px-32 lg:py-20 lg:gap-12'>
+        <div className='w-64 flex items-center relative   lg:w-96'>
           <input
-            className='py-1 w-full border-b-[1px] border-black outline-0'
+            className='py-1 w-full border-b-[1px] border-black outline-0   lg:py-2 lg:text-xl'
             type='text'
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
@@ -44,17 +44,17 @@ export default function Man({ products }) {
           />
           <IconSearch className='absolute right-0' />
         </div>
-        <h2 className='w-full text-left font-medium text-2xl'>
+        <h2 className='w-full text-left font-medium text-2xl   lg:text-3xl'>
           {titlePage.toUpperCase()}
         </h2>
-        <div className='w-full flex gap-2'>
+        <div className='w-full flex gap-2 overflow-x-scroll snap-x scrollbar-hide   lg:gap-4'>
           {categories.map((category) => (
             <button
-              className={`${
+              className={`snap-start ${
                 titlePage === category
                   ? 'bg-black text-white border-black'
                   : 'bg-transparent text-black border-gray-400'
-              } px-3 py-1 border-[1px] hover:bg-black hover:text-white hover:border-black`}
+              } px-3 py-1 border-[1px] hover:bg-black hover:text-white hover:border-black   lg:text-lg`}
               onClick={() => filterCategories(category)}
               key={category}
             >
@@ -62,15 +62,21 @@ export default function Man({ products }) {
             </button>
           ))}
         </div>
-        <section className='w-full flex flex-wrap gap-x-4 gap-y-8'>
+        <section className='w-full grid grid-cols-products gap-10   lg:gap-12'>
           {productsByCategory.length > 0
             ? productsByCategory.map((product) => (
-                <div className='w-40 flex flex-col gap-4' key={product._id}>
+                <div
+                  className='w-full flex flex-col gap-2   lg:gap-4'
+                  key={product._id}
+                >
                   <Product {...product} />
                 </div>
               ))
             : products.map((product) => (
-                <div className='w-40 flex flex-col gap-4' key={product._id}>
+                <div
+                  className='w-full flex flex-col gap-2   lg:gap-4'
+                  key={product._id}
+                >
                   <Product {...product} />
                 </div>
               ))}
