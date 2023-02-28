@@ -3,6 +3,7 @@ import { ProductsContext } from '@/context/ProductsContext'
 import Header from './Header'
 import Footer from './Footer'
 import Head from 'next/head'
+import OrderSuccess from './OrderSuccess'
 
 export default function Layout({ children, title = 'home' }) {
   const { setSelectedProducts } = useContext(ProductsContext)
@@ -11,8 +12,13 @@ export default function Layout({ children, title = 'home' }) {
   useEffect(() => {
     if (window.location.href.includes('success')) {
       setSelectedProducts([])
-      // add timeout for this message
-      setSuccess(true)
+      const timer = setTimeout(() => {
+        setSuccess(false)
+      }, 6000)
+      return () => {
+        clearTimeout(timer)
+        setSuccess(true)
+      }
     }
   }, [])
 
@@ -25,7 +31,7 @@ export default function Layout({ children, title = 'home' }) {
         <link rel='icon' href='/logo.png' />
       </Head>
       <Header />
-      {success && <div>Compra hecha</div>}
+      {success && <OrderSuccess />}
       {children}
       <Footer />
     </div>

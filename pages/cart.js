@@ -1,3 +1,4 @@
+import EmptyPage from '@/components/EmptyPage'
 import { IconPayment, IconX } from '@/components/Icons'
 import Layout from '@/components/Layout'
 import { ProductsContext } from '@/context/ProductsContext'
@@ -51,7 +52,12 @@ export default function Cart() {
             <IconX />
           </button>
         </header>
-        {!selectedProducts.length && <p>No products in your shopping cart</p>}
+        {!selectedProducts.length && (
+          <EmptyPage
+            message='No products in your shopping cart'
+            picture='cart'
+          />
+        )}
         <section className='flex flex-col gap-6'>
           {cartProducts.length &&
             cartProducts.map((product) => {
@@ -112,6 +118,7 @@ export default function Cart() {
             onChange={(e) => setAdress(e.target.value)}
             type='text'
             placeholder='Adress'
+            required
           />
           <input
             className='py-1 w-full border-b-[1px] border-gray-400 outline-0'
@@ -120,6 +127,7 @@ export default function Cart() {
             onChange={(e) => setCity(e.target.value)}
             type='text'
             placeholder='City'
+            required
           />
           <input
             className='py-1 w-full border-b-[1px] border-gray-400 outline-0'
@@ -128,6 +136,7 @@ export default function Cart() {
             onChange={(e) => setName(e.target.value)}
             type='text'
             placeholder='Name'
+            required
           />
           <input
             className='py-1 w-full border-b-[1px] border-gray-400 outline-0'
@@ -136,6 +145,7 @@ export default function Cart() {
             onChange={(e) => setemail(e.target.value)}
             type='text'
             placeholder='Email'
+            required
           />
           <p className='mt-6 font-semibold'>
             <span className='text-gray-400 font-medium'>Subtotal: </span>${' '}

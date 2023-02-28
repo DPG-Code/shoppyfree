@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { ProductsContext } from '@/context/ProductsContext'
 import useFavorites from '@/hooks/useFavorites'
 import Product from '@/components/Product'
+import EmptyPage from '@/components/EmptyPage'
 
 export default function Home() {
   const { favoritesProducts, setFavoritesProducts } =
@@ -33,7 +34,7 @@ export default function Home() {
               </div>
             ))
           ) : (
-            <p>No favorites products</p>
+            <EmptyPage message='No favorites products' picture='favorites' />
           )}
         </section>
       </main>
