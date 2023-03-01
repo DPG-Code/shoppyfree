@@ -7,12 +7,22 @@ export default function ProductsContextProvider({ children }) {
   const [selectedProducts, setSelectedProducts] = useLocalStorageState('cart', {
     defaultValue: []
   })
-  const [favoritesProducts, setFavoritesProducts] = useLocalStorageState('favorites', {
-    defaultValue: []
-  })
+  const [favoritesProducts, setFavoritesProducts] = useLocalStorageState(
+    'favorites',
+    {
+      defaultValue: []
+    }
+  )
 
   return (
-    <ProductsContext.Provider value={{ selectedProducts, setSelectedProducts, favoritesProducts, setFavoritesProducts}}>
+    <ProductsContext.Provider
+      value={{
+        selectedProducts,
+        setSelectedProducts,
+        favoritesProducts,
+        setFavoritesProducts
+      }}
+    >
       {children}
     </ProductsContext.Provider>
   )

@@ -6,21 +6,8 @@ import Product from '@/components/Product'
 import EmptyPage from '@/components/EmptyPage'
 
 export default function Home() {
-  const { favoritesProducts, setFavoritesProducts } =
-    useContext(ProductsContext)
+  const { favoritesProducts } = useContext(ProductsContext)
   const { favorites } = useFavorites(favoritesProducts)
-
-  const addRemoveFavorites = (id) => {
-    if (favoritesProducts.includes(id)) {
-      const positionId = favoritesProducts.indexOf(id)
-      if (positionId !== -1) {
-        setFavoritesProducts((prev) => {
-          return prev.filter((product, i) => i !== positionId)
-        })
-      }
-    }
-    return
-  }
 
   return (
     <Layout>

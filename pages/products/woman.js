@@ -1,14 +1,17 @@
 import { IconSearch } from '@/components/Icons'
 import Layout from '@/components/Layout'
 import Product from '@/components/Product'
-import connectMongoose from '@/lib/mongoose'
+import useProducts from '@/hooks/useProducts'
 import { useState } from 'react'
-import { getAllProducts } from '../api/products'
 
-export default function Woman({ products }) {
+export default function Woman() {
   const [keyword, setKeyword] = useState('')
   const [titlePage, setTitlePage] = useState('all products')
   const [productsByCategory, setProductsByCategory] = useState([])
+
+  const { productsDatabase } = useProducts('man')
+  let products = productsDatabase
+
   const categories = [
     'all products',
     ...new Set(products.map((p) => p.category))
@@ -84,16 +87,4 @@ export default function Woman({ products }) {
       </main>
     </Layout>
   )
-}
-
-export async function getServerSideProps() {
-  await connectMongoose()
-  const productsDatabse = await getAllProducts()
-  const products = productsDatabse.filter((p) => p.sex !== 'man')
-
-  return {
-    props: {
-      products: JSON.parse(JSON.stringify(products))
-    }
-  }
 }
