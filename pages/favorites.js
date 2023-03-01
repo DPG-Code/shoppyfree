@@ -16,19 +16,20 @@ export default function Home() {
           FAVORITES
         </h2>
         <section className='w-full grid grid-cols-products gap-10   lg:gap-12'>
-          {favoritesProducts.length ? (
-            favorites.map((product) => (
-              <div
-                className='w-full flex flex-col gap-2   lg:gap-4'
-                key={product._id}
-              >
-                <Product {...product} />
-              </div>
-            ))
-          ) : (
-            <EmptyPage message='No favorites products' picture='favorites' />
-          )}
+          {favoritesProducts.length
+            ? favorites.map((product) => (
+                <div
+                  className='w-full flex flex-col gap-2   lg:gap-4'
+                  key={product._id}
+                >
+                  <Product {...product} />
+                </div>
+              ))
+            : ''}
         </section>
+        {!favoritesProducts.length && (
+          <EmptyPage message='No favorites products' picture='favorites' />
+        )}
       </main>
     </Layout>
   )

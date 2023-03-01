@@ -59,59 +59,60 @@ export default function Cart() {
           />
         )}
         <section className='flex flex-col gap-6'>
-          {cartProducts.length &&
-            cartProducts.map((product) => {
-              const amount = selectedProducts.filter(
-                (id) => id === product._id
-              ).length
-              if (amount === 0) return
-              return (
-                <div
-                  className='w-72 flex items-center justify-start gap-6   lg:w-[500px] lg:gap-12'
-                  key={product._id}
-                >
-                  <article className='flex items-center justify-center'>
-                    <Link href={`/product/${product._id}`} key={product._id}>
-                      <img
-                        className='h-20 object-cover   lg:h-44'
-                        src={product.picture}
-                        alt={product.name}
-                      />
-                    </Link>
-                  </article>
-                  <aside className='w-full flex flex-col gap-1   lg:gap-3'>
-                    <p className='text-sm font-normal overflow-hidden text-ellipsis whitespace-nowrap   lg:text-2xl'>
-                      {product.name}
-                    </p>
-                    <h2 className='text-lg font-medium   lg:text-3xl'>
-                      $ {product.price}
-                    </h2>
-                    <div className='flex items-center justify-start gap-3   lg:gap-4'>
-                      <button
-                        className='px-2 bg-gray-200'
-                        onClick={() => removeMoreThisProduct(product._id)}
-                      >
-                        <span className='font-semibold   lg:text-lg'>-</span>
-                      </button>
-                      <span className='text-lg font-semibold   lg:text-xl'>
-                        {
-                          selectedProducts.filter((id) => id === product._id)
-                            .length
-                        }
-                      </span>
-                      <button
-                        className='px-2 bg-black'
-                        onClick={() => addMoreThisProduct(product._id)}
-                      >
-                        <span className='font-semibold text-white   lg:text-lg'>
-                          +
+          {cartProducts.length
+            ? cartProducts.map((product) => {
+                const amount = selectedProducts.filter(
+                  (id) => id === product._id
+                ).length
+                if (amount === 0) return
+                return (
+                  <div
+                    className='w-72 flex items-center justify-start gap-6   lg:w-[500px] lg:gap-12'
+                    key={product._id}
+                  >
+                    <article className='flex items-center justify-center'>
+                      <Link href={`/product/${product._id}`} key={product._id}>
+                        <img
+                          className='h-20 object-cover   lg:h-44'
+                          src={product.picture}
+                          alt={product.name}
+                        />
+                      </Link>
+                    </article>
+                    <aside className='w-full flex flex-col gap-1   lg:gap-3'>
+                      <p className='text-sm font-normal overflow-hidden text-ellipsis whitespace-nowrap   lg:text-2xl'>
+                        {product.name}
+                      </p>
+                      <h2 className='text-lg font-medium   lg:text-3xl'>
+                        $ {product.price}
+                      </h2>
+                      <div className='flex items-center justify-start gap-3   lg:gap-4'>
+                        <button
+                          className='px-2 bg-gray-200'
+                          onClick={() => removeMoreThisProduct(product._id)}
+                        >
+                          <span className='font-semibold   lg:text-lg'>-</span>
+                        </button>
+                        <span className='text-lg font-semibold   lg:text-xl'>
+                          {
+                            selectedProducts.filter((id) => id === product._id)
+                              .length
+                          }
                         </span>
-                      </button>
-                    </div>
-                  </aside>
-                </div>
-              )
-            })}
+                        <button
+                          className='px-2 bg-black'
+                          onClick={() => addMoreThisProduct(product._id)}
+                        >
+                          <span className='font-semibold text-white   lg:text-lg'>
+                            +
+                          </span>
+                        </button>
+                      </div>
+                    </aside>
+                  </div>
+                )
+              })
+            : ''}
         </section>
         <form
           action='/api/checkout'

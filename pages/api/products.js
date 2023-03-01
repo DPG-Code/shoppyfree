@@ -2,7 +2,7 @@ import connectMongoose from '@/lib/mongoose'
 import Product from '@/models/Product'
 
 export async function getAllProducts() {
-  return Product.find().exec()
+  return Product.find({})
 }
 
 export default async function handler(req, res) {
@@ -14,18 +14,16 @@ export default async function handler(req, res) {
     res.json(
       await Product.find({
         _id: { $in: idsArray }
-      }).exec()
+      })
     )
-  } 
-  else if (favs) {
+  } else if (favs) {
     const idsArray = favs.split(',')
     res.json(
       await Product.find({
         _id: { $in: idsArray }
-      }).exec()
+      })
     )
-  }
-  else {
+  } else {
     res.json(await getAllProducts())
   }
 }

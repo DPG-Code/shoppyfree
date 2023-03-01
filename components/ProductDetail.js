@@ -58,6 +58,16 @@ export default function ProductDetail({
             <IconHeart active='active' width='24px' height='24px' />
           </button>
         </section>
+        <footer className='mt-6 w-full flex flex-wrap gap-4'>
+          {imgs.map((img) => (
+            <img
+              key={img}
+              className='w-32 h-32 object-cover'
+              src={img}
+              alt={img}
+            />
+          ))}
+        </footer>
       </aside>
     </>
   )

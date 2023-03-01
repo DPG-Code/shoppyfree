@@ -1,8 +1,8 @@
 export const IconCart = ({ active = '', width = '24px', height = '24px' }) => {
   return (
     <svg
-      width='24px'
-      height='24px'
+      width={width}
+      height={height}
       strokeWidth='1'
       viewBox='0 0 24 24'
       fill='none'

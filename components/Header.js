@@ -36,10 +36,12 @@ export default function Header() {
         </div>
         <div className='flex gap-4'>
           <Link href='/favorites'>
-            <IconHeart active={pathname == '/favorites' && 'active'} />
+            {/* <IconHeart active={pathname == '/favorites' && 'active'} /> */}
+            <IconHeart active='active' />
           </Link>
           <Link className='flex relative' href='/cart'>
-            <IconCart active={pathname == '/cart' && 'active'} />
+            {/* <IconCart active={pathname == '/cart' && 'active'} /> */}
+            <IconCart active='active' />
             <span
               className={`w-5 h-5 flex items-center justify-center ${
                 selectedProducts.length === 0 ? 'bg-gray-400' : 'bg-red-500'
