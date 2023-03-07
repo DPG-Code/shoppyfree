@@ -4,10 +4,13 @@ import { ProductsContext } from '@/context/ProductsContext'
 import useFavorites from '@/hooks/useFavorites'
 import Product from '@/components/Product'
 import EmptyPage from '@/components/EmptyPage'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export default function Home() {
   const { favoritesProducts } = useContext(ProductsContext)
   const { favorites } = useFavorites(favoritesProducts)
+
+  const [favoriteRef] = useAutoAnimate()
 
   return (
     <Layout>
@@ -15,7 +18,10 @@ export default function Home() {
         <h2 className='w-full text-left font-medium text-2xl   lg:text-3xl'>
           FAVORITES
         </h2>
-        <section className='w-full grid grid-cols-products gap-10   lg:gap-12'>
+        <section
+          ref={favoriteRef}
+          className='w-full grid grid-cols-products gap-10   lg:gap-12'
+        >
           {favoritesProducts.length
             ? favorites.map((product) => (
                 <div

@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <Layout title='Shoppyfree'>
-      <main className='flex flex-col gap-2'>
+      <main className='pb-16 flex flex-col gap-2'>
         <Link className='w-full h-auto' href='/products/man'>
           <img
             className='w-full min-h-[280px] object-cover'

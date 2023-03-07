@@ -6,11 +6,15 @@ import { ProductsContext } from '@/context/ProductsContext'
 import useCart from '@/hooks/useCart'
 import Link from 'next/link'
 import { useContext, useState } from 'react'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export default function Cart() {
   const { selectedProducts, setSelectedProducts } = useContext(ProductsContext)
   const { cartProducts } = useCart(selectedProducts)
   const [checkout, setCheckout] = useState(false)
+
+  const [clearRef] = useAutoAnimate()
+  const [itemsCartRef] = useAutoAnimate()
 
   const addMoreThisProduct = (id) => {
     setSelectedProducts((prev) => [...prev, id])
@@ -47,7 +51,10 @@ export default function Cart() {
 
   return (
     <Layout>
-      <main className='px-10 py-16 w-full h-auto flex flex-col items-start justify-start gap-12   lg:px-32 lg:py-20 lg:gap-16'>
+      <main
+        ref={clearRef}
+        className='px-10 py-16 w-full h-auto flex flex-col items-start justify-start gap-12   lg:px-32 lg:py-20 lg:gap-16'
+      >
         <header className='w-full flex items-center justify-between'>
           <h2 className='text-left font-medium text-2xl   lg:text-3xl'>
             CART{' '}
@@ -63,7 +70,10 @@ export default function Cart() {
             picture='cart'
           />
         )}
-        <section className='w-full flex flex-col items-center justify-center gap-12   sm:gap-8'>
+        <section
+          ref={itemsCartRef}
+          className='w-full flex flex-col items-center justify-center gap-12   sm:gap-8'
+        >
           {cartProducts.length
             ? cartProducts.map((product) => {
                 const amount = selectedProducts.filter(

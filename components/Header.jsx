@@ -16,13 +16,13 @@ export default function Header() {
         <Link href='/'>
           <img className='w-14   lg:w-24' src='/logo.png' alt='logo-home' />
         </Link>
-        <div className='flex gap-2   sm:gap-6   lg:gap-10'>
+        <div className='flex gap-2   sm:gap-6   lg:gap-10   xl:gap-14'>
           <Link
             className={`font-medium border-b-2 ${
               pathname == '/products/man'
                 ? 'border-black'
                 : 'border-transparent'
-            } text-xs   lg:text-xl`}
+            } text-xs hover:border-black transition hover:duration-100 ease-in-out   lg:text-xl`}
             href='/products/man'
           >
             MAN
@@ -32,13 +32,13 @@ export default function Header() {
               pathname == '/products/woman'
                 ? 'border-black'
                 : 'border-transparent'
-            } text-xs   lg:text-xl`}
+            } text-xs hover:border-black transition hover:duration-100 ease-in-out   lg:text-xl`}
             href='/products/woman'
           >
             WOMAN
           </Link>
         </div>
-        <div className='flex gap-2   lg:gap-4'>
+        <div className='flex gap-2   lg:gap-4   xl:gap-8'>
           <Link href='/favorites'>
             <IconHeart active='active' />
           </Link>

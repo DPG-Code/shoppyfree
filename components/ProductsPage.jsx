@@ -1,5 +1,6 @@
 import { IconSearch } from './Icons'
 import Product from './Product'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export default function ProductsPage({
   keyword,
@@ -10,6 +11,8 @@ export default function ProductsPage({
   productsByCategory,
   products
 }) {
+  const [productsRef] = useAutoAnimate()
+
   return (
     <main className='px-10 py-16 w-full h-auto flex flex-col items-center justify-start gap-8   lg:px-32 lg:py-20 lg:gap-12'>
       <div className='w-64 flex items-center relative   lg:w-96'>
@@ -40,7 +43,10 @@ export default function ProductsPage({
           </button>
         ))}
       </div>
-      <section className='w-full grid grid-cols-products gap-10   lg:gap-12'>
+      <section
+        ref={productsRef}
+        className='w-full grid grid-cols-products gap-10   lg:gap-12'
+      >
         {productsByCategory.length > 0
           ? productsByCategory.map((product) => (
               <div
