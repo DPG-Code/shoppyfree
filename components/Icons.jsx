@@ -33,7 +33,7 @@ export const IconAddToCart = ({ width = '24px', height = '24px' }) => {
     >
       <path
         d='M19.26 9.696l1.385 9A2 2 0 0118.67 21H5.33a2 2 0 01-1.977-2.304l1.385-9A2 2 0 016.716 8h10.568a2 2 0 011.977 1.696zM14 5a2 2 0 10-4 0M8.992 15h3m3 0h-3m0 0v-3m0 3v3'
-        stroke='#ffffff'
+        stroke='#000000'
         strokeWidth='1.5'
         strokeLinecap='round'
         strokeLinejoin='round'
@@ -79,6 +79,24 @@ export const IconHeart = ({ active = '', width = '24px', height = '24px' }) => {
         d='M22 8.862a5.95 5.95 0 01-1.654 4.13c-2.441 2.531-4.809 5.17-7.34 7.608-.581.55-1.502.53-2.057-.045l-7.295-7.562c-2.205-2.286-2.205-5.976 0-8.261a5.58 5.58 0 018.08 0l.266.274.265-.274A5.612 5.612 0 0116.305 3c1.52 0 2.973.624 4.04 1.732A5.95 5.95 0 0122 8.862z'
         stroke='#000000'
         strokeWidth={`${active === 'active' ? '1.5' : '1'}`}
+        strokeLinejoin='round'
+      ></path>
+    </svg>
+  )
+}
+
+export const IconAddToFavorites = ({ width = '24px', height = '24px' }) => {
+  return (
+    <svg
+      width={width}
+      height={height}
+      strokeWidth='1'
+      viewBox='0 0 24 24'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path
+        d='M22 8.862a5.95 5.95 0 01-1.654 4.13c-2.441 2.531-4.809 5.17-7.34 7.608-.581.55-1.502.53-2.057-.045l-7.295-7.562c-2.205-2.286-2.205-5.976 0-8.261a5.58 5.58 0 018.08 0l.266.274.265-.274A5.612 5.612 0 0116.305 3c1.52 0 2.973.624 4.04 1.732A5.95 5.95 0 0122 8.862z'
+        strokeWidth='1.5'
         strokeLinejoin='round'
       ></path>
     </svg>

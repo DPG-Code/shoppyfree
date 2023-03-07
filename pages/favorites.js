@@ -19,7 +19,7 @@ export default function Home() {
           {favoritesProducts.length
             ? favorites.map((product) => (
                 <div
-                  className='w-full flex flex-col gap-2   lg:gap-4'
+                  className='w-full flex flex-col gap-2 relative   lg:gap-4'
                   key={product._id}
                 >
                   <Product {...product} />

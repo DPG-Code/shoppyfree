@@ -16,31 +16,33 @@ export default function Header() {
         <Link href='/'>
           <img className='w-14   lg:w-24' src='/logo.png' alt='logo-home' />
         </Link>
-        <div className='flex gap-2   lg:gap-6'>
+        <div className='flex gap-2   sm:gap-6   lg:gap-10'>
           <Link
-            className={`font-${
-              pathname == '/products/man' ? 'medium' : 'light'
+            className={`font-medium border-b-2 ${
+              pathname == '/products/man'
+                ? 'border-black'
+                : 'border-transparent'
             } text-xs   lg:text-xl`}
             href='/products/man'
           >
             MAN
           </Link>
           <Link
-            className={`font-${
-              pathname == '/products/woman' ? 'medium' : 'light'
+            className={`font-medium border-b-2 ${
+              pathname == '/products/woman'
+                ? 'border-black'
+                : 'border-transparent'
             } text-xs   lg:text-xl`}
             href='/products/woman'
           >
             WOMAN
           </Link>
         </div>
-        <div className='flex gap-4'>
+        <div className='flex gap-2   lg:gap-4'>
           <Link href='/favorites'>
-            {/* <IconHeart active={pathname == '/favorites' && 'active'} /> */}
             <IconHeart active='active' />
           </Link>
           <Link className='flex relative' href='/cart'>
-            {/* <IconCart active={pathname == '/cart' && 'active'} /> */}
             <IconCart active='active' />
             <span
               className={`w-5 h-5 flex items-center justify-center ${

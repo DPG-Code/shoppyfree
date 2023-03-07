@@ -1,6 +1,6 @@
 import { ProductsContext } from '@/context/ProductsContext'
-import { useContext } from 'react'
-import { IconAddToCart, IconHeart } from './Icons'
+import { useContext, useState } from 'react'
+import { IconAddToFavorites } from './Icons'
 
 export default function ProductDetail({
   id,
@@ -14,6 +14,7 @@ export default function ProductDetail({
 }) {
   const { setSelectedProducts, setFavoritesProducts } =
     useContext(ProductsContext)
+  const [imgProduct, setImgProduct] = useState(picture)
 
   const addProductToCart = () => {
     setSelectedProducts((prev) => [...prev, id])
@@ -22,21 +23,21 @@ export default function ProductDetail({
   const addProductToFavorites = () => {
     setFavoritesProducts((prev) => [...prev, id])
   }
+
   return (
     <>
       <article className='w-full flex items-center justify-center    lg:w-auto lg:basis-3/6 lg:overflow-hidden'>
         <img
           className='h-72   lg:h-[600px] lg:object-cover'
-          src={picture}
+          src={imgProduct}
           alt={name}
         />
       </article>
       <aside className='w-full h-auto flex flex-col items-start justify-start gap-4   lg:gap-6 lg:w-auto lg:basis-3/6'>
-        <h2 className='font-semibold text-xl   sm:text-3xl'>
+        <h2 className='font-medium text-xl   sm:text-5xl'>
           {name.toUpperCase()}
         </h2>
-        <p className='text-gray-500 font-normal   sm:text-2xl'>{description}</p>
-        <h3 className='font-bold text-3xl   sm:text-5xl'>$ {price}</h3>
+        <p className='text-gray-600 font-medium   sm:text-3xl'>{description}</p>
         <section className='flex gap-4   sm:gap-6'>
           <p className='text-gray-500   sm:text-xl'>
             Genre: <span className='text-black font-medium'>{sex}</span>
@@ -45,27 +46,35 @@ export default function ProductDetail({
             Category: <span className='text-black font-medium'>{category}</span>
           </p>
         </section>
-        <section className='w-auto flex gap-4   sm:gap-8'>
+        <h3 className='font-semibold text-2xl   sm:text-4xl'>$ {price}</h3>
+        <section className='w-auto flex gap-6   sm:gap-10'>
           <button
-            className='px-6 py-2 bg-black flex items-center justify-center   sm:px-12 sm:py-3'
+            className='px-10 py-2 bg-black flex items-center justify-center   sm:px-20 sm:py-3'
             onClick={addProductToCart}
           >
             <span className='text-white text-xs font-medium    sm:text-base'>
               ADD TO CART
             </span>
           </button>
-          <button className='mr-auto' onClick={addProductToFavorites}>
-            <IconHeart active='active' width='24px' height='24px' />
+          <button
+            className='fill-none stroke-black hover:fill-red-600 hover:stroke-red-700 transition hover:duration-200 ease-in-out'
+            onClick={addProductToFavorites}
+          >
+            <IconAddToFavorites width='30px' height='30px' />
           </button>
         </section>
         <footer className='mt-6 w-full flex flex-wrap gap-4'>
-          {imgs.map((img) => (
-            <img
-              key={img}
-              className='w-32 h-32 object-cover'
-              src={img}
-              alt={img}
-            />
+          {[picture, ...imgs].map((img, i) => (
+            <button onClick={() => setImgProduct(img)}>
+              <img
+                key={i}
+                className={`w-32 h-32 object-cover border-[1px] ${
+                  img == imgProduct ? 'border-gray-600' : 'border-transparent'
+                }`}
+                src={img}
+                alt={img}
+              />
+            </button>
           ))}
         </footer>
       </aside>

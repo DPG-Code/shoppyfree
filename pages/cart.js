@@ -1,5 +1,6 @@
 import EmptyPage from '@/components/EmptyPage'
-import { IconPayment, IconX } from '@/components/Icons'
+import FormCheackout from '@/components/FormCheckout'
+import { IconX } from '@/components/Icons'
 import Layout from '@/components/Layout'
 import { ProductsContext } from '@/context/ProductsContext'
 import useCart from '@/hooks/useCart'
@@ -9,11 +10,7 @@ import { useContext, useState } from 'react'
 export default function Cart() {
   const { selectedProducts, setSelectedProducts } = useContext(ProductsContext)
   const { cartProducts } = useCart(selectedProducts)
-
-  const [adress, setAdress] = useState('')
-  const [city, setCity] = useState('')
-  const [name, setName] = useState('')
-  const [email, setemail] = useState('')
+  const [checkout, setCheckout] = useState(false)
 
   const addMoreThisProduct = (id) => {
     setSelectedProducts((prev) => [...prev, id])
@@ -28,6 +25,14 @@ export default function Cart() {
   }
   const cleanCart = () => {
     setSelectedProducts((prev) => [])
+  }
+
+  const deleteItemFromCart = (id) => {
+    setSelectedProducts((prev) => prev.filter((p) => p !== id))
+  }
+
+  const goToPay = () => {
+    setCheckout(!checkout)
   }
 
   let subtotal = 0
@@ -48,8 +53,8 @@ export default function Cart() {
             CART{' '}
             {selectedProducts.length > 0 ? `(${selectedProducts.length})` : ''}
           </h2>
-          <button onClick={cleanCart}>
-            <IconX />
+          <button className='font-medium text-gray-400' onClick={cleanCart}>
+            clear cart
           </button>
         </header>
         {!selectedProducts.length && (
@@ -58,7 +63,7 @@ export default function Cart() {
             picture='cart'
           />
         )}
-        <section className='flex flex-col gap-6'>
+        <section className='w-full flex flex-col items-center justify-center gap-12   sm:gap-8'>
           {cartProducts.length
             ? cartProducts.map((product) => {
                 const amount = selectedProducts.filter(
@@ -67,122 +72,86 @@ export default function Cart() {
                 if (amount === 0) return
                 return (
                   <div
-                    className='w-72 flex items-center justify-start gap-6   lg:w-[500px] lg:gap-12'
+                    className='w-52 flex flex-col items-center justify-between gap-2 relative   sm:w-full sm:flex-row sm:gap-0'
                     key={product._id}
                   >
-                    <article className='flex items-center justify-center'>
+                    <section className='flex items-center justify-center'>
                       <Link href={`/product/${product._id}`} key={product._id}>
                         <img
-                          className='h-20 object-cover   lg:h-44'
+                          className='h-32 object-cover   sm:h-20   lg:h-44'
                           src={product.picture}
                           alt={product.name}
                         />
                       </Link>
-                    </article>
-                    <aside className='w-full flex flex-col gap-1   lg:gap-3'>
-                      <p className='text-sm font-normal overflow-hidden text-ellipsis whitespace-nowrap   lg:text-2xl'>
-                        {product.name}
+                    </section>
+                    <article className='w-full flex flex-col gap-1   sm:w-64   lg:gap-3 lg:w-96'>
+                      <p className='text-sm font-medium overflow-hidden text-ellipsis whitespace-nowrap   lg:text-2xl'>
+                        {product.name.toUpperCase()}
                       </p>
-                      <h2 className='text-lg font-medium   lg:text-3xl'>
+                      <div className='flex gap-2 text-xs text-gray-500'>
+                        <span>
+                          {product.sex.charAt(0).toUpperCase() +
+                            product.sex.slice(1)}
+                        </span>{' '}
+                        |
+                        <span>
+                          {product.category.charAt(0).toUpperCase() +
+                            product.category.slice(1)}
+                        </span>
+                      </div>
+                      <h2 className='text-lg font-medium   lg:text-2xl'>
                         $ {product.price}
                       </h2>
-                      <div className='flex items-center justify-start gap-3   lg:gap-4'>
-                        <button
-                          className='px-2 bg-gray-200'
-                          onClick={() => removeMoreThisProduct(product._id)}
-                        >
-                          <span className='font-semibold   lg:text-lg'>-</span>
-                        </button>
-                        <span className='text-lg font-semibold   lg:text-xl'>
-                          {
-                            selectedProducts.filter((id) => id === product._id)
-                              .length
-                          }
+                    </article>
+                    <div className='w-full flex items-start justify-start gap-3   sm:w-auto sm:items-center   lg:gap-4'>
+                      <button
+                        onClick={() => removeMoreThisProduct(product._id)}
+                      >
+                        <span className='font-semibold opacity-50   lg:text-lg'>
+                          -
                         </span>
-                        <button
-                          className='px-2 bg-black'
-                          onClick={() => addMoreThisProduct(product._id)}
-                        >
-                          <span className='font-semibold text-white   lg:text-lg'>
-                            +
-                          </span>
-                        </button>
-                      </div>
-                    </aside>
+                      </button>
+                      <span className='text-lg font-semibold   lg:text-xl'>
+                        {
+                          selectedProducts.filter((id) => id === product._id)
+                            .length
+                        }
+                      </span>
+                      <button onClick={() => addMoreThisProduct(product._id)}>
+                        <span className='font-semibold   lg:text-lg'>+</span>
+                      </button>
+                    </div>
+                    <button
+                      className='absolute top-2 right-2 opacity-50   sm:relative sm:top-0 sm:right-0'
+                      onClick={() => deleteItemFromCart(product._id)}
+                    >
+                      <IconX />
+                    </button>
                   </div>
                 )
               })
             : ''}
         </section>
-        <form
-          action='/api/checkout'
-          method='POST'
-          className='w-full flex flex-col gap-2   lg:gap-6'
+        {checkout && (
+          <FormCheackout
+            subtotal={subtotal}
+            delivery={delivery}
+            total={total}
+            selectedProducts={selectedProducts}
+            goToPay={goToPay}
+          />
+        )}
+        <button
+          className={`mt-6 mx-auto px-24 py-2 ${
+            selectedProducts.length > 0 ? 'bg-black' : 'bg-gray-300'
+          } lg:px-56 lg:py-4 lg:gap-4`}
+          disabled={selectedProducts.length > 0 ? false : true}
+          onClick={goToPay}
         >
-          <input
-            className='py-1 w-full border-b-[1px] border-black outline-0   lg:py-2 lg:text-3xl'
-            name='adress'
-            value={adress}
-            onChange={(e) => setAdress(e.target.value)}
-            type='text'
-            placeholder='Adress'
-            required
-          />
-          <input
-            className='py-1 w-full border-b-[1px] border-black outline-0   lg:py-2 lg:text-3xl'
-            name='city'
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            type='text'
-            placeholder='City'
-            required
-          />
-          <input
-            className='py-1 w-full border-b-[1px] border-black outline-0   lg:py-2 lg:text-3xl'
-            name='name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            type='text'
-            placeholder='Name'
-            required
-          />
-          <input
-            className='py-1 w-full border-b-[1px] border-black outline-0   lg:py-2 lg:text-3xl'
-            name='email'
-            value={email}
-            onChange={(e) => setemail(e.target.value)}
-            type='text'
-            placeholder='Email'
-            required
-          />
-          <p className='mt-6 font-semibold   lg:text-3xl'>
-            <span className='text-gray-400 font-medium'>Subtotal: </span>${' '}
-            {Number.parseFloat(subtotal).toFixed(2)}
-          </p>
-          <p className='font-semibold   lg:text-3xl'>
-            <span className='text-gray-400 font-medium'>Delivery: </span>
-            {delivery > 0 ? `$${delivery}` : 'FREE'}
-          </p>
-          <p className='font-semibold   lg:text-3xl'>
-            <span className='text-gray-400 font-medium'>Total: </span>${' '}
-            {Number.parseFloat(total).toFixed(2)}
-          </p>
-          <input
-            type='hidden'
-            name='products'
-            value={selectedProducts.join(',')}
-          />
-          <button
-            className={`mt-6 mx-auto px-32 py-2 ${
-              selectedProducts.length > 0 ? 'bg-black' : 'bg-gray-300'
-            } flex items-center justify-center gap-2    lg:px-56 lg:py-4 lg:gap-4`}
-            type='submit'
-            disabled={selectedProducts.length > 0 ? false : true}
-          >
-            <span className='text-white font-semibold   lg:text-2xl'>PAY</span>
-            <IconPayment />
-          </button>
-        </form>
+          <span className='text-white font-semibold   lg:text-2xl'>
+            CHECKOUT
+          </span>
+        </button>
       </main>
     </Layout>
   )
