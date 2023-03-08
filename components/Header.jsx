@@ -18,7 +18,7 @@ export default function Header() {
         </Link>
         <div className='flex gap-2   sm:gap-6   lg:gap-10   xl:gap-14'>
           <Link
-            className={`font-medium border-b-2 ${
+            className={`pb-1 font-medium border-b-2 ${
               pathname == '/products/man'
                 ? 'border-black'
                 : 'border-transparent'
@@ -28,7 +28,7 @@ export default function Header() {
             MAN
           </Link>
           <Link
-            className={`font-medium border-b-2 ${
+            className={`pb-1 font-medium border-b-2 ${
               pathname == '/products/woman'
                 ? 'border-black'
                 : 'border-transparent'

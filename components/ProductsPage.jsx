@@ -28,14 +28,14 @@ export default function ProductsPage({
       <h2 className='w-full text-left font-medium text-2xl   lg:text-3xl'>
         {titlePage.toUpperCase()}
       </h2>
-      <div className='w-full flex gap-6 overflow-x-scroll snap-x scrollbar-hide   lg:gap-10'>
+      <div className='categories pb-4 w-full flex gap-6 overflow-x-scroll snap-x   lg:gap-16'>
         {categories.map((category) => (
           <button
-            className={`snap-start ${
+            className={`whitespace-nowrap snap-start ${
               titlePage === category
                 ? 'text-black border-black'
                 : 'text-gray-400 border-transparent'
-            } font-semibold text-sm pb-1 border-b-[1px] hover:text-black hover:border-black transition hover:duration-200 ease-in-out   lg:text-lg`}
+            } font-semibold text-sm pt-1.5 border-t-2 hover:text-black hover:border-black transition hover:duration-200 ease-in-out   lg:text-lg`}
             onClick={() => filterCategories(category)}
             key={category}
           >

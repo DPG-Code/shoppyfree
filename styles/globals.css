@@ -17,3 +17,17 @@
 body{
   font-family: 'Inter', sans-serif;
 }
+
+.categories::-webkit-scrollbar {
+  height: 6px;
+}
+.categories::-webkit-scrollbar-track {
+  background: transparent;
+}
+.categories::-webkit-scrollbar-thumb {
+  background: #0000002c;
+  border-radius: 16px;
+}
+.categories::-webkit-scrollbar-thumb:hover {
+  background: #0000003c;
+}

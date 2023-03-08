@@ -37,7 +37,9 @@ export default function ProductDetail({
         <h2 className='font-medium text-xl   sm:text-5xl'>
           {name.toUpperCase()}
         </h2>
-        <p className='text-gray-600 font-medium   sm:text-3xl'>{description}</p>
+        <p className='text-sm text-gray-500 font-normal   sm:text-2xl'>
+          {description}
+        </p>
         <section className='flex gap-4   sm:gap-6'>
           <p className='text-gray-500   sm:text-xl'>
             Genre: <span className='text-black font-medium'>{sex}</span>
