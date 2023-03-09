@@ -18,10 +18,10 @@ export default function FormCheackout({
       <form
         action='/api/checkout'
         method='POST'
-        className='px-6 py-16 bg-white w-72 flex flex-col gap-2 rounded-sm drop-shadow-2xl relative  lg:w-[620px] lg:gap-8'
+        className='px-6 py-16 bg-white w-72 flex flex-col gap-2 rounded-2xl drop-shadow-2xl relative  lg:w-[620px] lg:gap-8'
       >
         <input
-          className='py-1 w-full border-b-2 border-gray-300 outline-0   lg:py-2 lg:text-3xl'
+          className='py-1 w-full border-b-2 border-gray-200 outline-0 focus:border-black   lg:py-2 lg:text-3xl'
           name='adress'
           value={adress}
           onChange={(e) => setAdress(e.target.value)}
@@ -30,7 +30,7 @@ export default function FormCheackout({
           required
         />
         <input
-          className='py-1 w-full border-b-2 border-gray-300 outline-0   lg:py-2 lg:text-3xl'
+          className='py-1 w-full border-b-2 border-gray-200 outline-0 focus:border-black   lg:py-2 lg:text-3xl'
           name='city'
           value={city}
           onChange={(e) => setCity(e.target.value)}
@@ -39,7 +39,7 @@ export default function FormCheackout({
           required
         />
         <input
-          className='py-1 w-full border-b-2 border-gray-300 outline-0   lg:py-2 lg:text-3xl'
+          className='py-1 w-full border-b-2 border-gray-200 outline-0 focus:border-black   lg:py-2 lg:text-3xl'
           name='name'
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -48,7 +48,7 @@ export default function FormCheackout({
           required
         />
         <input
-          className='py-1 w-full border-b-2 border-gray-300 outline-0   lg:py-2 lg:text-3xl'
+          className='py-1 w-full border-b-2 border-gray-200 outline-0 focus:border-black   lg:py-2 lg:text-3xl'
           name='email'
           value={email}
           onChange={(e) => setemail(e.target.value)}

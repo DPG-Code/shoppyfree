@@ -1,6 +1,10 @@
 import { IconSearch } from './Icons'
-import Product from './Product'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import Loader from './Loader'
+import { lazy, Suspense } from 'react'
+import SkeletonProduct from './SkeletonProduct'
+
+const ProductLazy = lazy(() => import('./Product'))
 
 export default function ProductsPage({
   keyword,
@@ -9,7 +13,8 @@ export default function ProductsPage({
   categories,
   filterCategories,
   productsByCategory,
-  products
+  products,
+  loading
 }) {
   const [productsRef] = useAutoAnimate()
 
@@ -43,28 +48,30 @@ export default function ProductsPage({
           </button>
         ))}
       </div>
-      <section
-        ref={productsRef}
-        className='w-full grid grid-cols-products gap-10   lg:gap-12'
-      >
-        {productsByCategory.length > 0
-          ? productsByCategory.map((product) => (
-              <div
-                className='w-full flex flex-col gap-2 relative   lg:gap-4'
-                key={product._id}
-              >
-                <Product {...product} />
-              </div>
-            ))
-          : products.map((product) => (
-              <div
-                className='w-full flex flex-col gap-2 relative   lg:gap-4'
-                key={product._id}
-              >
-                <Product {...product} />
-              </div>
-            ))}
-      </section>
+      {loading ? (
+        <Loader />
+      ) : (
+        <section
+          ref={productsRef}
+          className='w-full grid grid-cols-products gap-10   lg:gap-12'
+        >
+          {productsByCategory.length > 0
+            ? productsByCategory.map((product) => (
+                <div key={product._id}>
+                  <Suspense fallback={<SkeletonProduct />}>
+                    <ProductLazy {...product} />
+                  </Suspense>
+                </div>
+              ))
+            : products.map((product) => (
+                <div key={product._id}>
+                  <Suspense fallback={<SkeletonProduct />}>
+                    <ProductLazy {...product} />
+                  </Suspense>
+                </div>
+              ))}
+        </section>
+      )}
     </main>
   )
 }

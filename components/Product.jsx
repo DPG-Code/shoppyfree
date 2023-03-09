@@ -23,7 +23,7 @@ export default function Product({ _id, name, price, picture }) {
   }
 
   return (
-    <>
+    <div className='w-full flex flex-col gap-2 relative   lg:gap-4'>
       <Link
         className='z-30 w-full flex flex-col gap-2'
         href={`/product/${_id}`}
@@ -51,6 +51,6 @@ export default function Product({ _id, name, price, picture }) {
       >
         <IconAddToFavorites width='20px' height='20px' />
       </button>
-    </>
+    </div>
   )
 }

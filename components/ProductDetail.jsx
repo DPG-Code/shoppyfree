@@ -67,9 +67,8 @@ export default function ProductDetail({
         </section>
         <footer className='mt-6 w-full flex flex-wrap gap-4'>
           {[picture, ...imgs].map((img, i) => (
-            <button onClick={() => setImgProduct(img)}>
+            <button key={i} onClick={() => setImgProduct(img)}>
               <img
-                key={i}
                 className={`w-32 h-32 object-cover border-[1px] ${
                   img == imgProduct ? 'border-gray-600' : 'border-transparent'
                 }`}

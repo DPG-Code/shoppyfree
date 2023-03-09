@@ -6,7 +6,7 @@ import { getProduct } from '../api/product'
 export default function Product({ id, product }) {
   return (
     <Layout title={product.name}>
-      <main className='px-10 pt-16 w-full h-auto flex flex-col gap-6   lg:px-32 lg:py-24 lg:flex-row lg:gap-0'>
+      <main className='px-10 py-16 w-full h-auto flex flex-col gap-6   lg:px-32 lg:py-24 lg:flex-row lg:gap-0'>
         <ProductDetail id={id} {...product} />
       </main>
     </Layout>

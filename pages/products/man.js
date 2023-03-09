@@ -8,7 +8,7 @@ export default function Man() {
   const [titlePage, setTitlePage] = useState('all products')
   const [productsByCategory, setProductsByCategory] = useState([])
 
-  const { productsDatabase } = useProducts('woman')
+  const { productsDatabase, loading } = useProducts('woman')
   let products = productsDatabase
 
   const categories = [
@@ -43,6 +43,7 @@ export default function Man() {
         filterCategories={filterCategories}
         productsByCategory={productsByCategory}
         products={products}
+        loading={loading}
       />
     </Layout>
   )

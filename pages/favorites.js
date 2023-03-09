@@ -2,13 +2,17 @@ import Layout from '@/components/Layout'
 import { useContext } from 'react'
 import { ProductsContext } from '@/context/ProductsContext'
 import useFavorites from '@/hooks/useFavorites'
-import Product from '@/components/Product'
+import { lazy, Suspense } from 'react'
 import EmptyPage from '@/components/EmptyPage'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import Loader from '@/components/Loader'
+import SkeletonProduct from '@/components/SkeletonProduct'
+
+const ProductLazy = lazy(() => import('@/components/Product'))
 
 export default function Home() {
   const { favoritesProducts } = useContext(ProductsContext)
-  const { favorites } = useFavorites(favoritesProducts)
+  const { favorites, loading } = useFavorites(favoritesProducts)
 
   const [favoriteRef] = useAutoAnimate()
 
@@ -18,21 +22,24 @@ export default function Home() {
         <h2 className='w-full text-left font-medium text-2xl   lg:text-3xl'>
           FAVORITES
         </h2>
-        <section
-          ref={favoriteRef}
-          className='w-full grid grid-cols-products gap-10   lg:gap-12'
-        >
-          {favoritesProducts.length
-            ? favorites.map((product) => (
-                <div
-                  className='w-full flex flex-col gap-2 relative   lg:gap-4'
-                  key={product._id}
-                >
-                  <Product {...product} />
-                </div>
-              ))
-            : ''}
-        </section>
+        {loading ? (
+          <Loader />
+        ) : (
+          <section
+            ref={favoriteRef}
+            className='w-full grid grid-cols-products gap-10   lg:gap-12'
+          >
+            {favoritesProducts.length
+              ? favorites.map((product) => (
+                  <div key={product._id}>
+                    <Suspense fallback={<SkeletonProduct />}>
+                      <ProductLazy {...product} />
+                    </Suspense>
+                  </div>
+                ))
+              : ''}
+          </section>
+        )}
         {!favoritesProducts.length && (
           <EmptyPage message='No favorites products' picture='favorites' />
         )}
