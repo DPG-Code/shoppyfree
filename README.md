@@ -4,6 +4,8 @@
 
 Shop with speed and ease on our Next.js-powered ecommerce site. Find what you need and buy it fast!
 
+![Project previe image](https://res.cloudinary.com/dhpxqwsym/image/upload/w_1280,h_720,c_fill/v1678870284/documentations/shoppyfree_foisqv.png)
+
 ### 💨 Built With
 
 - Next.js
