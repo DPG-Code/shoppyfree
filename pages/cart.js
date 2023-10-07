@@ -1,6 +1,6 @@
 import EmptyPage from '@/components/EmptyPage'
 import FormCheackout from '@/components/FormCheckout'
-import { IconX } from '@/components/Icons'
+import { IconTrash, IconX } from '@/components/Icons'
 import Layout from '@/components/Layout'
 import { ProductsContext } from '@/context/ProductsContext'
 import useCart from '@/hooks/useCart'
@@ -56,12 +56,16 @@ export default function Cart() {
         className='px-10 py-16 w-full h-auto flex flex-col items-start justify-start gap-12   lg:px-32 lg:py-20 lg:gap-16'
       >
         <header className='w-full flex items-center justify-between'>
-          <h2 className='text-left font-medium text-2xl   lg:text-3xl'>
+          <h2 className='text-left font-medium text-2xl   lg:text-3xl   xl:text-4xl'>
             CART{' '}
             {selectedProducts.length > 0 ? `(${selectedProducts.length})` : ''}
           </h2>
-          <button className='font-medium text-gray-400' onClick={cleanCart}>
-            clear cart
+          <button
+            className='font-semibold text-gray-400 hover:text-gray-600 flex items-center justify-center gap-2   lg:text-2xl'
+            onClick={cleanCart}
+          >
+            Clear
+            <IconTrash />
           </button>
         </header>
         {!selectedProducts.length && (

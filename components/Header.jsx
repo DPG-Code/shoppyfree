@@ -22,7 +22,7 @@ export default function Header() {
               pathname == '/products/man'
                 ? 'border-black'
                 : 'border-transparent'
-            } text-xs hover:border-black transition hover:duration-100 ease-in-out   lg:text-xl`}
+            } text-xs hover:border-black transition hover:duration-100 ease-in-out   lg:text-xl   xl:text-2xl`}
             href='/products/man'
           >
             MAN
@@ -32,17 +32,17 @@ export default function Header() {
               pathname == '/products/woman'
                 ? 'border-black'
                 : 'border-transparent'
-            } text-xs hover:border-black transition hover:duration-100 ease-in-out   lg:text-xl`}
+            } text-xs hover:border-black transition hover:duration-100 ease-in-out   lg:text-xl   xl:text-2xl`}
             href='/products/woman'
           >
             WOMAN
           </Link>
         </div>
-        <div className='flex gap-2   lg:gap-4   xl:gap-8'>
-          <Link href='/favorites'>
+        <div className='flex gap-2   lg:gap-6   xl:gap-12'>
+          <Link className='xl:scale-125' href='/favorites'>
             <IconHeart active='active' />
           </Link>
-          <Link className='flex relative' href='/cart'>
+          <Link className='flex relative   xl:scale-125' href='/cart'>
             <IconCart active='active' />
             <span
               className={`w-5 h-5 flex items-center justify-center ${

@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <Layout>
       <main className='px-10 py-16 w-full h-auto flex flex-col items-center justify-start gap-6   lg:px-32 lg:py-20 lg:gap-12'>
-        <h2 className='w-full text-left font-medium text-2xl   lg:text-3xl'>
+        <h2 className='w-full text-left font-medium text-2xl   lg:text-3xl   xl:text-4xl'>
           FAVORITES
         </h2>
         {loading ? (
