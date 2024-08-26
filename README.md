@@ -1,22 +1,44 @@
-# ShoppyFree
+<div align="center">
+  <a href="https://shoppyfree.vercel.app">
+    <img
+      src="https://res.cloudinary.com/dhpxqwsym/image/upload/w_1280,h_720,c_fill/v1678870284/documentations/shoppyfree_zds4ex"
+      alt="Shoppyfree principal page"
+    />
+  </a>
+  <p>
+    <b>
+      Shop with speed and ease on our Next.js-powered ecommerce site. Find what you need and buy it fast!
+    </b>
+  </p>
 
-### 💨 About The Project
+<div align="center">
+<p></p>
+</div>
 
-Shop with speed and ease on our Next.js-powered ecommerce site. Find what you need and buy it fast!
+![Next.js Badge](https://img.shields.io/badge/Next.js 13-000?logo=nextdotjs =fff =flat)
+![React.js Badge](https://img.shields.io/badge/React-06B6D4?logo=react&logoColor=fff&style=flat)
+![GitHub stars](https://img.shields.io/github/stars/Dpg-Code/shoppyfree)
+![GitHub forks](https://img.shields.io/github/forks/Dpg-Code/shoppyfree)
+![GitHub PRs](https://img.shields.io/github/issues-pr/Dpg-Code/shoppyfree)
+![GitHub issues](https://img.shields.io/github/issues/Dpg-Code/shoppyfree)
 
-![Project previe image](https://res.cloudinary.com/dhpxqwsym/image/upload/w_1280,h_720,c_fill/v1678870284/documentations/shoppyfree_w2towq)
+</div>
 
-### 💨 Built With
+## 🛠️ Stack
 
-- Next.js
-- Mongoose
-- Mongodb
-- Micro
-- Strapi
-- Tailwind
-- Use-local-storage
+- **Next.js**
+- **React.js**
+- **Mongodb**
+- **Mongoose**
+- **Micro**
+- **Stripe**
+- **Tailwind**
+- **Use-local-storage**
 
-## Commands
+## 🚀 Getting Started
+
+> [!IMPORTANT]
+> Please do not make any real payments on this website.
 
 ```bash
 npm run dev
