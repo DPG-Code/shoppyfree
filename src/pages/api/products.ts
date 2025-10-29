@@ -6,9 +6,7 @@ export const GET: APIRoute = async () => {
     .from('products')
     .select('*')
 
-  if (error) {
-    return new Response(JSON.stringify({ error: error.message }),{ status: 500 })
-  }
+  if (error) return new Response(JSON.stringify({ error: error.message }),{ status: 500 })
 
   return new Response(JSON.stringify(products),{ status: 200 })
 }
