@@ -1,38 +1,28 @@
 ---
-import ProductsList from '@/components/ProductsList'
+import HomeLayout from '@/layouts/HomeLayout.astro'
 ---
 
-<html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
-    <title>ShoppyFree</title>
-  </head>
-  <body>
-    <h1>ShoppyFree</h1>
-    <ProductsList client:load />
-  </body>
-</html>
+<HomeLayout title='ShoppyFree'>
+  <section>
+    <h2>Welcome to ShoppyFree!</h2>
+    <p>Your one-stop shop for free products.</p>
+    <li>
+      <a href='/products'>Products</a>
+      <a href='/product/15'>Product</a>
+      <a href='/checkout'>Checkout</a>
+      <a href='/shoppingCart'>Shopping Cart</a>
+    </li>
+  </section>
+</HomeLayout>
 
 <style is:global>
-  .products {
+  section {
+    gap: 6rem;
+  }
+
+  li {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    gap: 2rem;
-  }
-
-  .products-grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
-  }
-
-  .products-grid img {
-    width: 100px;
-    height: auto;
   }
 </style>

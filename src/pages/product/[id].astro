@@ -1,0 +1,25 @@
+---
+import { supabase } from '@/lib/supabase'
+import HomeLayout from '@/layouts/HomeLayout.astro'
+
+export async function getStaticPaths() {
+  const { data: products } = await supabase.from('products').select('id, name')
+
+  if (!products) return []
+
+  return products.map((product) => {
+    return {
+      params: { id: product.id.toString() },
+      props: { name: product.name }
+    }
+  })
+}
+
+const { id } = Astro.params
+const { name } = Astro.props
+---
+
+<HomeLayout title={`Product: ${name}`}>
+  <h2>{name}</h2>
+  <p>Product ID: {id}</p>
+</HomeLayout>
