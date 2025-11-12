@@ -1,10 +1,17 @@
 ---
 import HomeLayout from '@/layouts/HomeLayout.astro'
 import ProductsList from '@/components/ProductsList'
+
+// SSR:
+const origin = new URL(Astro.request.url).origin
+const url = `${origin}/api/genre/men`
+
+const response = await fetch(url, { cache: 'no-store' })
+const data = await response.json()
 ---
 
-<HomeLayout title='Products'>
-  <ProductsList client:load />
+<HomeLayout title='Men products'>
+  <ProductsList data={data} client:load />
 </HomeLayout>
 
 <style is:global>

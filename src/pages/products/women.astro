@@ -1,0 +1,36 @@
+---
+import HomeLayout from '@/layouts/HomeLayout.astro'
+import ProductsList from '@/components/ProductsList'
+
+// SSR:
+const origin = new URL(Astro.request.url).origin
+const url = `${origin}/api/genre/women`
+
+const response = await fetch(url, { cache: 'no-store' })
+const data = await response.json()
+---
+
+<HomeLayout title='Men products'>
+  <ProductsList data={data} client:load />
+</HomeLayout>
+
+<style is:global>
+  .products {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 2rem;
+  }
+
+  .products-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .products-grid img {
+    width: 100px;
+    height: auto;
+  }
+</style>

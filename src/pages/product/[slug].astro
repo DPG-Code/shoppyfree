@@ -1,0 +1,28 @@
+---
+import { supabase } from '@/lib/supabase'
+import HomeLayout from '@/layouts/HomeLayout.astro'
+import Product from '@/components/Product'
+
+export async function getStaticPaths() {
+  const { data: products } = await supabase.from('products').select('slug')
+
+  if (!products) return []
+
+  return products.map((product) => {
+    return {
+      params: { slug: product.slug }
+    }
+  })
+}
+
+const { slug } = Astro.params
+const origin = new URL(Astro.request.url).origin
+const url = `${origin}/api/product/${slug}`
+
+const response = await fetch(url, { cache: 'no-store' })
+const data = await response.json()
+---
+
+<HomeLayout title={data?.name || 'Product'}>
+  <Product data={data} client:load />
+</HomeLayout>
