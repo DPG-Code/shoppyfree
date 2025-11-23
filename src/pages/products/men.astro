@@ -15,22 +15,10 @@ const data = await response.json()
 </HomeLayout>
 
 <style is:global>
-  .products {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 2rem;
-  }
-
   .products-grid {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-
-  .products-grid img {
-    width: 100px;
-    height: auto;
+    gap: 1.5rem;
   }
 </style>

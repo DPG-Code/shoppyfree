@@ -1,5 +1,6 @@
 ---
 const title = Astro.props.title || 'ShoppyFree'
+import '../styles/global.css'
 ---
 
 <html lang='en'>
@@ -11,12 +12,18 @@ const title = Astro.props.title || 'ShoppyFree'
     <title>{title}</title>
   </head>
   <body>
+    <header class='flex justify-between items-center p-4'>
+      <a class='font-semibold' href='/'>ShoppyFree</a>
+      <div class='flex gap-4 items-center'>
+        <span>User</span>
+        <a href='/shopping-cart'>Shopping Cart</a>
+      </div>
+    </header>
     <slot />
+    <footer class='flex justify-center items-center p-4'>
+      <span>© 2025 ShoppyFree. All rights reserved.</span>
+    </footer>
   </body>
 </html>
 
-<style is:global>
-  body {
-    font-family: system-ui, sans-serif;
-  }
-</style>
+<style is:global></style>

@@ -6,23 +6,28 @@ export default function ProductsList({ data }: { data: Product[] }) {
   const [products,setProducts] = useState<Product[]>(data)
 
   return (
-    <section className='products'>
-      <h4>Products List</h4>
+    <section className='flex flex-col justify-center items-center gap-6'>
+      <h4 className='text-2xl font-bold p-4'>Products List</h4>
       {
         products.length > 0 ? (
-          <div className='products-grid'>
+          <section className='products-grid p-12'>
             {
               products.map((product: Product) => (
-                <picture key={product.id}>
-                  <img src={product.image_product ? product.image_product[0] : ''} alt={product.slug} />
-                  <a href={`/product/${product.slug}`}>
-                    <span>{product.name}</span>
+                <div key={product.id} className='flex flex-col justify-center items-center gap-2'>
+                  <picture className='w-32 h-44 overflow-hidden rounded-md'>
+                    <img
+                      src={product.image_product ? product.image_product[0] : ''}
+                      alt={product.slug}
+                      className='w-full h-full object-cover' />
+                  </picture>
+                  <a href={`/product/${product.slug}`} className='w-full'>
+                    <p className='truncate text-center'>{product.name}</p>
                   </a>
-                  <p>{product.price}</p>
-                </picture>
+                  <span className='w-full text-center text-xl font-semibold'>${product.price}</span>
+                </div>
               ))
             }
-          </div>
+          </section>
         ) : <p>Loading products...</p>
       }
     </section>

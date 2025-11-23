@@ -3,25 +3,16 @@ import HomeLayout from '@/layouts/HomeLayout.astro'
 ---
 
 <HomeLayout title='ShoppyFree'>
-  <section>
-    <h2>Welcome to ShoppyFree!</h2>
-    <p>Your one-stop shop for free products.</p>
-    <li>
-      <a href='/products/men'>Men</a>
-      <a href='/products/women'>Women</a>
-      <a href='/shoppingCart'>Shopping Cart</a>
+  <section class='flex flex-col items-center justify-center gap-24 py-16'>
+    <header class='flex flex-col items-center justify-center'>
+      <h2 class='text-4xl font-bold'>Welcome to ShoppyFree!</h2>
+      <p class='text-neutral-800'>Your one-stop shop for free products.</p>
+    </header>
+    <li class='w-full flex flex-col items-center justify-center'>
+      <a class='p-12' href='/products/men'>Men</a>
+      <a class='p-12' href='/products/women'>Women</a>
     </li>
   </section>
 </HomeLayout>
 
-<style>
-  section {
-    gap: 6rem;
-  }
-
-  li {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-</style>
+<style></style>
